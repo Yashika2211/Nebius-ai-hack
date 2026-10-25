@@ -4,6 +4,7 @@ from __future__ import annotations
 import asyncio
 import json
 import logging
+from contextlib import asynccontextmanager
 from typing import Any, Callable
 
 from fastapi import FastAPI, HTTPException
@@ -20,20 +21,23 @@ from .config import settings
 from .models import resolve_models
 
 logging.basicConfig(level=logging.INFO)
-app = FastAPI(title="BidScout API", version="1.0.0")
+
+
+@asynccontextmanager
+async def lifespan(_: FastAPI):
+    db.init()
+    seed.ensure_seeded()
+    yield
+
+
+app = FastAPI(title="BidScout API", version="1.0.0", lifespan=lifespan)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.cors_origins + ["*"] if "*" in settings.cors_origins else settings.cors_origins,
+    allow_origins=settings.cors_origins,
     allow_origin_regex=r"https://.*\.vercel\.app",
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-
-@app.on_event("startup")
-def startup() -> None:
-    db.init()
-    seed.ensure_seeded()
 
 
 def stream(label: str, work: Callable[[trace.Trace], Any]) -> EventSourceResponse:
