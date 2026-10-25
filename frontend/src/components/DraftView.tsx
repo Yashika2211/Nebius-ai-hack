@@ -82,7 +82,7 @@ export function DraftView({ data, title }: { data: Draft; title: string }) {
           <div className="flex items-center gap-2 border-b border-border px-4 py-3 text-sm font-semibold text-fg">
             {data.review.ready_to_submit ? <CheckCircle2 className="size-4 text-emerald-600" /> : <FileWarning className="size-4 text-amber-600" />}
             Final review (Nemotron Ultra)
-            <span className="font-normal text-fg-muted">: {data.review.summary}</span>
+            {data.review.summary && <span className="font-normal text-fg-muted">: {data.review.summary}</span>}
           </div>
           {data.review.issues?.length > 0 && (
             <ul className="divide-y divide-border">
