@@ -1,0 +1,36 @@
+{
+  "id": "demo-ridgeline",
+  "name": "Ridgeline Facility Services LLC",
+  "website": "",
+  "notes": "Ridgeline Facility Services LLC is a woman-owned small business based in San Antonio, Texas, with 42 employees.\n\nWe are certified by the SBA as a Woman-Owned Small Business (WOSB). We are also a HUB-certified vendor with the State of Texas.\n\nOur primary NAICS code is 561720 Janitorial Services. We also work under NAICS 561730 Landscaping Services and NAICS 238220 Plumbing, Heating, and Air-Conditioning Contractors.\n\nWe provide janitorial and custodial services, floor care, green cleaning with EPA Safer Choice products, grounds maintenance, and HVAC preventive maintenance for office buildings, clinics, and schools.\n\nPast performance: Since 2021 we have provided daily custodial services for the Bexar County Health Clinic network, covering 6 clinic sites and 140,000 square feet, under a $1.2M three-year contract.\n\nPast performance: We maintain grounds and landscaping for Northside Independent School District at 9 campuses under a $380,000 annual contract.\n\nPast performance: We delivered quarterly HVAC preventive maintenance for a 4-building office park for Alamo Property Group from 2022 to 2024, valued at $210,000.\n\nAll supervisors complete OSHA 10-hour training and our staff pass background checks. We carry $2M general liability insurance.\n\nWe serve the San Antonio and Austin metro areas, including Bexar, Travis, and Comal counties.",
+  "extraction": {
+    "name": "Ridgeline Facility Services LLC",
+    "summary": "A 42-person woman-owned small business in San Antonio providing janitorial, grounds, and HVAC maintenance for clinics, schools, and offices. WOSB-certified with past performance for Bexar County and Northside ISD.",
+    "locations": ["San Antonio, TX", "Austin, TX", "Bexar County, TX", "Travis County, TX", "Comal County, TX"],
+    "employee_count": "42",
+    "naics": [
+      {"code": "561720", "title": "Janitorial Services", "citations": ["notes:3"], "quote": "Our primary NAICS code is 561720 Janitorial Services."},
+      {"code": "561730", "title": "Landscaping Services", "citations": ["notes:3"], "quote": "NAICS 561730 Landscaping Services"},
+      {"code": "238220", "title": "Plumbing, Heating, and Air-Conditioning Contractors", "citations": ["notes:3"], "quote": "NAICS 238220 Plumbing, Heating, and Air-Conditioning Contractors"}
+    ],
+    "certifications": [
+      {"name": "WOSB", "detail": "SBA Woman-Owned Small Business", "citations": ["notes:2"], "quote": "certified by the SBA as a Woman-Owned Small Business (WOSB)"},
+      {"name": "other", "detail": "Texas HUB-certified vendor", "citations": ["notes:2"], "quote": "HUB-certified vendor with the State of Texas"}
+    ],
+    "capabilities": [
+      {"text": "Janitorial and custodial services, including floor care", "citations": ["notes:4"], "quote": "janitorial and custodial services, floor care"},
+      {"text": "Green cleaning with EPA Safer Choice products", "citations": ["notes:4"], "quote": "green cleaning with EPA Safer Choice products"},
+      {"text": "Grounds maintenance and landscaping", "citations": ["notes:4"], "quote": "grounds maintenance"},
+      {"text": "HVAC preventive maintenance", "citations": ["notes:4"], "quote": "HVAC preventive maintenance for office buildings, clinics, and schools"},
+      {"text": "OSHA 10-trained supervisors and background-checked staff", "citations": ["notes:8"], "quote": "All supervisors complete OSHA 10-hour training and our staff pass background checks."}
+    ],
+    "past_performance": [
+      {"client": "Bexar County Health Clinic network", "text": "Daily custodial services at 6 clinic sites, 140,000 sq ft, since 2021", "value": "$1.2M (3 years)", "citations": ["notes:5"], "quote": "daily custodial services for the Bexar County Health Clinic network, covering 6 clinic sites and 140,000 square feet"},
+      {"client": "Northside Independent School District", "text": "Grounds and landscaping at 9 campuses", "value": "$380,000/year", "citations": ["notes:6"], "quote": "grounds and landscaping for Northside Independent School District at 9 campuses"},
+      {"client": "Alamo Property Group", "text": "Quarterly HVAC preventive maintenance for a 4-building office park, 2022-2024", "value": "$210,000", "citations": ["notes:7"], "quote": "quarterly HVAC preventive maintenance for a 4-building office park"}
+    ],
+    "clearances": [],
+    "bonding": [],
+    "keywords": ["janitorial services", "custodial services", "facility maintenance", "grounds maintenance", "landscaping", "HVAC preventive maintenance", "green cleaning", "clinic cleaning", "school custodial", "floor care", "San Antonio", "Texas"]
+  }
+}
