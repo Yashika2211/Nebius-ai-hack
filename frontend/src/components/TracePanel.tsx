@@ -17,9 +17,11 @@ export function TracePanel({
   running: boolean;
   className?: string;
 }) {
-  const end = useRef<HTMLDivElement>(null);
+  const list = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    end.current?.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    // Scroll only the panel, never the page.
+    const el = list.current;
+    if (el) el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });
   }, [events.length]);
 
   const llm = events.filter((e) => e.kind === "llm");
@@ -40,14 +42,13 @@ export function TracePanel({
         ) : null}
       </div>
 
-      <div className="min-h-0 flex-1 overflow-y-auto px-2 py-2 text-xs">
+      <div ref={list} className="min-h-0 flex-1 overflow-y-auto px-2 py-2 text-xs">
         {events.length === 0 && !running && (
           <p className="px-2 py-6 text-center text-fg-subtle">Run an agent step to see every model call here.</p>
         )}
         {events.map((e) => (
           <TraceRow key={e.seq} e={e} />
         ))}
-        <div ref={end} />
       </div>
 
       {llm.length > 0 && (
