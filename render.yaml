@@ -1,0 +1,20 @@
+# Render Blueprint: free-tier backend (no card required). Frontend deploys on Vercel.
+services:
+  - type: web
+    name: bidscout-api
+    runtime: docker
+    plan: free
+    rootDir: backend
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    envVars:
+      - key: NEBIUS_API_KEY
+        sync: false
+      - key: TAVILY_API_KEY
+        sync: false
+      - key: WATCH_TOKEN
+        generateValue: true
+      - key: DEMO_MODE
+        value: auto
+      - key: CORS_ORIGINS
+        value: http://localhost:3000
