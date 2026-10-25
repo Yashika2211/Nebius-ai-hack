@@ -49,12 +49,12 @@ def fake_call(model, messages, json_mode, max_tokens, temperature, on_token):
                               "action": "Attach references", "citations": ["profile:12"],
                               "quote": "Bexar County Health Clinic network"}],
                "verdict": "go", "verdict_reason": "Eligible."}
+    elif "compliance reviewer" in system:
+        out = {"issues": [], "ready_to_submit": True, "summary": "Looks good"}
     elif "compliance matrix" in system:
         out = {"rows": [{"req_id": "rfp:3", "requirement": "Daily custodial", "section": "2.1",
                          "response": "We clean clinics daily", "gap": False, "citations": ["profile:7"],
                          "quote": "Janitorial and custodial services"}]}
-    elif "compliance reviewer" in system:
-        out = {"issues": [], "ready_to_submit": True, "summary": "Looks good"}
     else:  # capability statement (streamed)
         text = "## Executive Summary\nRidgeline provides janitorial and custodial services, including floor care [profile:7]."
         if on_token:
@@ -114,6 +114,7 @@ def test_golden_path(client):
     draft = next(e for e in events if e["type"] == "result")["result"]
     assert draft["matrix"][0]["grounded"]
     assert draft["statement_check"]["grounding_rate"] == 1.0
+    assert draft["review"]["ready_to_submit"] is True
 
     detail = client.get(f"/api/opportunities/{opp['id']}").json()
     assert detail["eligibility"]["verdict"] == "go" and detail["draft"]
