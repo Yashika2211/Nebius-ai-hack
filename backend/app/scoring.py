@@ -32,6 +32,8 @@ def combine(factors: dict[str, dict], days_left: int | None = None) -> dict:
             **factors["deadline_feasibility"],
             "score": ds,
             "reason": f"{days_left} days until the response is due" if days_left >= 0 else "Deadline has passed",
+            "grounded": True,  # computed from the extracted due date, not model reasoning
+            "evidence": [],
         }
 
     total, breakdown = 0.0, []
