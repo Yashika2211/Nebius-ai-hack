@@ -61,6 +61,7 @@ class Settings:
     database_path: str = field(
         default_factory=lambda: os.getenv("DATABASE_PATH", str(ROOT / "backend" / "bidscout.db"))
     )
+    watch_token: str = field(default_factory=lambda: os.getenv("WATCH_TOKEN", ""))
     cors_origins: list[str] = field(
         default_factory=lambda: os.getenv("CORS_ORIGINS", "http://localhost:3000").split(",")
     )

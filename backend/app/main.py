@@ -7,7 +7,7 @@ import logging
 from contextlib import asynccontextmanager
 from typing import Any, Callable
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, Header, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from sse_starlette.sse import EventSourceResponse
@@ -235,6 +235,14 @@ def run_watch(profile_id: str):
         return watch.run_for_profile(profile)
 
     return stream("watch", work)
+
+
+@app.post("/api/watch/run-all")
+async def run_watch_all(authorization: str = Header(default="")) -> dict:
+    """Daily scheduled entry point (GitHub Actions cron). Requires WATCH_TOKEN."""
+    if not settings.watch_token or authorization != f"Bearer {settings.watch_token}":
+        raise HTTPException(401, "Invalid watch token")
+    return await asyncio.to_thread(watch.run_all)
 
 
 @app.get("/api/profiles/{profile_id}/watch")

@@ -130,3 +130,14 @@ def test_replay_mode_serves_cache_without_keys(client, monkeypatch):
     assert any(e["type"] == "result" for e in events)
     llm_events = [e["event"] for e in events if e["type"] == "trace" and e["event"]["kind"] == "llm"]
     assert llm_events and all(e["cached"] for e in llm_events)
+
+
+def test_watch_run_all_requires_token(client, monkeypatch):
+    assert client.post("/api/watch/run-all").status_code == 401
+    monkeypatch.setattr(settings, "watch_token", "secret")
+    assert client.post("/api/watch/run-all", headers={"Authorization": "Bearer nope"}).status_code == 401
+    resp = client.post("/api/watch/run-all", headers={"Authorization": "Bearer secret"})
+    assert resp.status_code == 200
+    assert resp.json()["demo-ridgeline"] == 1
+    runs = client.get("/api/profiles/demo-ridgeline/watch").json()
+    assert runs[0]["new_count"] == 1
