@@ -32,7 +32,7 @@ export function Header() {
           <span
             className={cn("size-2 rounded-full", offline ? "bg-rose-500" : live ? "bg-emerald-500" : status ? "bg-amber-500" : "bg-fg-subtle")}
           />
-          {offline ? "API offline" : !status ? "Connecting…" : live ? "Live · Nemotron on Token Factory" : "Demo replay mode"}
+          {offline ? "API offline" : !status ? "Connecting…" : live ? <>Live<span className="hidden sm:inline"> · Nemotron on Token Factory</span></> : "Demo replay mode"}
         </div>
       </div>
     </header>
