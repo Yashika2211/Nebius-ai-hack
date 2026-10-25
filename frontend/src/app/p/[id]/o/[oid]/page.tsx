@@ -25,6 +25,8 @@ export default function OpportunityPage({ params }: { params: Promise<{ id: stri
 
   useEffect(() => {
     get<Opportunity>(`/api/opportunities/${oid}`).then(setOpp).catch((e) => setError(String(e)));
+    const initial = new URLSearchParams(window.location.search).get("tab");
+    if (initial === "eligibility" || initial === "draft") setTab(initial);
   }, [oid]);
 
   const eligibility = elig.result ?? opp?.eligibility ?? null;
